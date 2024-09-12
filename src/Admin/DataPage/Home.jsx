@@ -19,7 +19,7 @@ const AdminPanel = () => {
     useEffect(() => {
         const fetchOffers = async () => {
             try {
-                const response = await axios.get("https://carrent-2-4fh8.onrender.comoffers");
+                const response = await axios.get("http://localhost:3000/offers");
                 setOffers(response.data);
             } catch (error) {
                 console.error("Error fetching offers", error);
@@ -39,7 +39,7 @@ const AdminPanel = () => {
         if (isEditing) {
             // If editing, update the existing offer
             try {
-                const response = await axios.put(`https://carrent-2-4fh8.onrender.comoffers/${currentOfferId}`, newOffer);
+                const response = await axios.put(`http://localhost:3000/offers/${currentOfferId}`, newOffer);
                 setOffers(offers.map(offer => (offer._id === currentOfferId ? response.data : offer))); // Update offers array
                 setIsEditing(false); // Reset edit mode
                 setCurrentOfferId(null); // Reset current offer
@@ -50,7 +50,7 @@ const AdminPanel = () => {
         } else {
             // If not editing, add a new offer
             try {
-                const response = await axios.post("https://carrent-2-4fh8.onrender.comoffers", newOffer);
+                const response = await axios.post("http://localhost:3000/offers", newOffer);
                 setOffers([...offers, response.data]); // Update state with the new offer
                 setNewOffer({ img: "", title: "", code: "", description: "" });
             } catch (error) {
@@ -62,7 +62,7 @@ const AdminPanel = () => {
     // Delete an offer
     const deleteOffer = async (id) => {
         try {
-            await axios.delete(`https://carrent-2-4fh8.onrender.comoffers/${id}`);
+            await axios.delete(`http://localhost:3000/offers/${id}`);
             setOffers(offers.filter((offer) => offer._id !== id)); // Update state to remove deleted offer
         } catch (error) {
             console.error("Error deleting offer", error.response ? error.response.data : error.message);

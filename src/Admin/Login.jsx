@@ -10,7 +10,7 @@ const Login = ({ onLogin }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Simulate authentication (replace with real auth logic)
-        if (username === 'admin' && password === 'admin123') {
+        if (username === '' && password === '') {
             onLogin(true);  // Update authentication status
             navigate('/admin/home');  // Redirect to admin home
         } else {

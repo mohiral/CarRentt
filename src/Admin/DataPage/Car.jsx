@@ -21,7 +21,7 @@ const AdminPanel = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await axios.get('https://carrent-2-4fh8.onrender.comcars');
+        const response = await axios.get('http://localhost:3000/cars');
         setCars(response.data);
       } catch (error) {
         console.error('Error fetching cars:', error);
@@ -59,12 +59,12 @@ const AdminPanel = () => {
     try {
       if (editingCarId) {
         // Edit existing car
-        const response = await axios.put(`https://carrent-2-4fh8.onrender.comcars/${editingCarId}`, carData);
+        const response = await axios.put(`http://localhost:3000/cars/${editingCarId}`, carData);
         setCars(cars.map(c => (c._id === editingCarId ? response.data : c)));
         setEditingCarId(null); // Clear editing state
       } else {
         // Add new car
-        const response = await axios.post('https://carrent-2-4fh8.onrender.comcars', carData);
+        const response = await axios.post('http://localhost:3000/cars', carData);
         setCars([...cars, response.data]);
       }
 
@@ -104,7 +104,7 @@ const AdminPanel = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://carrent-2-4fh8.onrender.comcars/${id}`);
+      await axios.delete(`http://localhost:3000/cars/${id}`);
       setCars(cars.filter(car => car._id !== id));
       alert('Car deleted successfully');
     } catch (error) {
