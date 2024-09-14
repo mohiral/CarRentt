@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-
-    "start": "node backend/server.js"
+    "start": "node Backend/server.js"
   },
   "dependencies": {
     "axios": "^1.7.7",
@@ -48,3 +47,5 @@
   "author": "",
   "license": "ISC"
 }
+
+
