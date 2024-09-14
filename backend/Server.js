@@ -1,12 +1,17 @@
+// backend/server.js
+
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Load environment variables from .env file
 dotenv.config();
 
+// Initialize Express app
 const app = express();
 
 // Middleware
@@ -145,6 +150,16 @@ app.delete('/offers/:id', async (req, res) => {
     console.error('Error deleting offer:', error);
     res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }
+});
+
+// Serve static files from the 'dist' directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Serve index.html for all routes to support client-side routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 // Start the server using environment variable for PORT
