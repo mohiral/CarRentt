@@ -21,7 +21,7 @@ const AdminPanel = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/cars');
+        const response = await axios.get('https://carrentt-8.onrender.com/cars');
         setCars(response.data);
       } catch (error) {
         console.error('Error fetching cars:', error);

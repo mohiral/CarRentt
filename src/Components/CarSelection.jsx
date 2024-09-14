@@ -10,7 +10,7 @@ const CarSelectionPage = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/cars'); // Fetch car data
+        const response = await axios.get('https://carrentt-8.onrender.com//cars'); // Fetch car data
         setCars(response.data);
       } catch (error) {
         console.error('Error fetching car data:', error);
